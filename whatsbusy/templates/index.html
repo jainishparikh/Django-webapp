@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Main {%endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock head%}
+{% block content %}
+{% csrf_token %}
+<div class="welcome-wrapper">
+    <div class="welcome">
+        <h1>Welcome To WhatsBusy</h1>
+    </div>
+</div>
+
+{% endblock %}

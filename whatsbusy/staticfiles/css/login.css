@@ -1,0 +1,13 @@
+.form-wrapper {
+    margin-left: 1%;
+    width: 20%;
+}
+
+.login-button {
+    width: 60%;
+}
+
+.register-button {
+    margin-top: 3%;
+    width: 60%;
+}

@@ -1,0 +1,17 @@
+.sub-wrapper {
+    position: relative;
+    display: flex;
+    height: 80vh;
+}
+
+.sub {
+    margin: auto;
+}
+
+sub a {
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+}
+

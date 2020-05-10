@@ -32,7 +32,7 @@ spec:
             value: "3306"
           - name: HOST
             value: mysql  
-          image: jainishparikh/whatsbusy:v1
+          image: jainishparikh/whatsbusy
           name: to-do-container
       restartPolicy: Always
       terminationGracePeriodSeconds: 30

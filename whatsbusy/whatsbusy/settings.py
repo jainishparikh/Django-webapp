@@ -76,7 +76,7 @@ WSGI_APPLICATION = 'whatsbusy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
+# docker
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -87,12 +87,13 @@ DATABASES = {
         'PORT': os.environ['PORT'],
     }
 }
+# localhost
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'whatsbusy',
-#         'USER': 'jainish',
-#         'PASSWORD': 'jainish',
+#         'NAME': '',
+#         'USER': '',
+#         'PASSWORD': '',
 #         'HOST': '127.0.0.1',
 #         'PORT': '3306',
 #     }
@@ -151,5 +152,5 @@ AUTHENTICATION_BACKENDS = (
 #
 # AUTHENTICATION_BACKENDS = (
 #     'django.contrib.auth.backends.ModelBackend',)
-STRIPE_PUBLISHABLE_KEY = "pk_test_dAo4ju8bOSf3zlqur5QQpuE200ho5AR9vZ"
-STRIPE_SECRET_KEY = "sk_test_dcOJS110AdAX6c75QoHD7HMh00DkN1r7sp"
+STRIPE_PUBLISHABLE_KEY = ""
+STRIPE_SECRET_KEY = ""

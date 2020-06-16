@@ -12,3 +12,6 @@ class Subscription(models.Model):
     stripe_customer_id = models.CharField(max_length=500, default='')
     stripe_token_id = models.CharField(max_length=500, default='')
     stripe_subscription_id = models.CharField(max_length=500, default='')
+
+    def __str__(self):
+        return self.stripe_subscription_id

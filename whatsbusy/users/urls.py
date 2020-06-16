@@ -12,6 +12,8 @@ urlpatterns = [
     path('register/', views.register, name="register"),
     # path to function rendering home page
     path('home/', views.home, name="home"),
+    # path to function rendering account details page
+    path('myaccount/', views.account, name="account")
 
 
 ]

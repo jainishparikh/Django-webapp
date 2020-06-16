@@ -5,13 +5,14 @@ from django.contrib.auth import logout, login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from subscription.models import Subscription
+from movies.models import Movie
 # Create your views here.
 
 
 # main/index page
 def index(request):
     if request.user.is_authenticated:
-        return render(request, 'home.html')
+        return redirect('users:home')
     else:
         return render(request, 'index.html')
 
@@ -33,6 +34,15 @@ def register(request):
 # home page
 @login_required
 def home(request):
-    subscription = Subscription.objects.get(user=request.user)
-    context = {"active": subscription.active, "trial": subscription.trial}
+    # subscription = Subscription.objects.get(user=request.user)
+    movies = Movie.objects.all()
+    context = {"movies": movies}
     return render(request, 'home.html', context)
+
+
+@login_required
+def account(request):
+    subscription = Subscription.objects.get(user=request.user)
+    context = {"user": request.user,
+               "active": subscription.active, "trial": subscription.trial}
+    return render(request, 'account_home.html', context)

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Home {%endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock head%}
+{% block welcome %}
+<li class="nav-item">
+    <a class="nav-link">Welcome {{user.username}}</a>
+</li>
+{% endblock welcome %}
+{% block content %}
+{% csrf_token %}
+<div class="sub-wrapper">
+    <div class="sub">
+
+        <p><b>Subscription Status</b></p>
+        {% if active%}
+        <h3>You have Premium subscription</h3>
+        <button type="submit" class="btn btn-success" onclick="cancel()">CANCEL</button>
+
+        {%else%}
+        {% if trial%}
+        <h3>You do not have Premium Subscription You do not have trial left!</h3>
+        <button type="submit" class="btn btn-success" onclick="premium()">GET PREMIUM</button>
+        {%else%}
+        <h3>You do not have Premium Subscription You have 7 day trial left!</h3>
+        <button type="submit" class="btn btn-success" onclick="premium()">GET PREMIUM</button>
+
+        {% endif %}
+        {% endif %}
+    </div>
+</div>
+
+<script>
+    function cancel() {
+        location.href = "{% url 'subscription:cancelPremium'%}"
+    }
+
+    function premium() {
+        location.href = "{% url 'subscription:getPremium'%}"
+    }
+</script>
+
+{% endblock %}

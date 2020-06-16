@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Home {%endblock title%}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock head%}
+{% block welcome %}
+<li class="nav-item">
+    <a class="nav-link">Welcome {{user.username}}</a>
+</li>
+{% endblock welcome %}
+{% block content %}
+{% csrf_token %}
+<div class="sub-wrapper">
+    <div class="sub">
+        <h5> {{movie}}</h5>
+        <p>IMDB: {{movie.imdb_rating}}</p>
+        <p>Description: {{movie.description}}</p>
+
+        <button id='javascript:' onclick='startmovie("{{active}}")'>Watch Now</button>
+        <div id="playmovie"></div>
+        <br>
+
+    </div>
+</div>
+
+<script>
+
+    function startmovie( active ) {
+        console.log( active )
+        if ( active == "True" ) {
+
+            document.getElementById( "playmovie" ).innerHTML = "<video width='530' height='330' controls><source src='{% static 'Were.the.Millers.2013.mp4'%}' type='video/mp4'>Not Supported </source> </video>"
+        } else {
+            if ( confirm( "You Do not have premium, Click Ok to get Premium" ) ) {
+                location.href = "{% url 'subscription:getPremium'%}"
+            }
+        }
+    }
+</script>
+
+{% endblock content %}

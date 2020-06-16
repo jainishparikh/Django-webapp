@@ -30,6 +30,7 @@ urlpatterns = [
     path('subscription/', include('subscription.urls')),
     # paths for Django admin
     path('admin/', admin.site.urls),
-
+    # path for movies
+    path('movies/', include('movies.urls'))
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

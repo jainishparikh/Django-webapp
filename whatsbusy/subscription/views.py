@@ -89,7 +89,7 @@ def subscribeCustomer(subscription, customer_id):
                     'plan': 'plan_HCy6UA9z08gVnb',
                 },
             ],
-            trial_end=1589144675,
+            trial_period_days=7,
         )
         subscription.stripe_subscription_id = stripe_subscription["id"]
         subscription.trial = True

@@ -13,24 +13,14 @@
 {% csrf_token %}
 <div class="sub-wrapper">
     <div class="sub">
-        {% if active%}
-        <h3>You have Premium subscription</h3>
-        <button type="submit" class="btn btn-success" onclick="cancel()">CANCEL</button>
-
-        {%else%}
-        {% if trial%}
-        <h3>You do not have Premium Subscription You do not have trial left!</h3>
-        <button type="submit" class="btn btn-success" onclick="premium()">GET PREMIUM</button>
-        {%else%}
-        <h3>You do not have Premium Subscription You have 7 day trial left!</h3>
-        <button type="submit" class="btn btn-success" onclick="premium()">GET PREMIUM</button>
-
-        {% endif %}
-        {% endif %}
+        <h3>Movies</h3>
+        {% for movie in movies %}
+        <h5><a href="{% url 'movies:get_movie' movie %}"> {{movie}}</a></h5>
+        {% endfor %}
     </div>
 </div>
 
-<script>
+<!-- <script>
     function cancel() {
         location.href = "{% url 'subscription:cancelPremium'%}"
     }
@@ -38,6 +28,6 @@
     function premium() {
         location.href = "{% url 'subscription:getPremium'%}"
     }
-</script>
+</script> -->
 
-{% endblock %}
+{% endblock content %}

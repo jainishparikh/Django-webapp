@@ -36,10 +36,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
-    'subscription.apps.SubscriptionConfig',
     'users.apps.UsersConfig',
-
+    'subscription.apps.SubscriptionConfig',
+    'movies.apps.MoviesConfig',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -58,7 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates/users'),
-                 os.path.join(BASE_DIR, 'templates/registration'), os.path.join(BASE_DIR, 'templates/subscription')],
+                 os.path.join(BASE_DIR, 'templates/registration'), os.path.join(BASE_DIR, 'templates/subscription'), os.path.join(BASE_DIR, 'templates/movies')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -76,28 +76,27 @@ WSGI_APPLICATION = 'whatsbusy.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-# docker
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ['DATABASE'],
-        'USER': os.environ['USER'],
-        'PASSWORD': os.environ['PASSWORD'],
-        'HOST': os.environ['HOST'],
-        'PORT': os.environ['PORT'],
-    }
-}
-# localhost
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': '',
-#         'USER': '',
-#         'PASSWORD': '',
-#         'HOST': '127.0.0.1',
-#         'PORT': '3306',
+#         'NAME': os.environ['DATABASE'],
+#         'USER': os.environ['USER'],
+#         'PASSWORD': os.environ['PASSWORD'],
+#         'HOST': os.environ['HOST'],
+#         'PORT': os.environ['PORT'],
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'whatsbusy',
+        'USER': 'jainish',
+        'PASSWORD': 'jainish',
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    }
+}
 
 
 # Password validation
@@ -140,17 +139,19 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+SESSION_COOKIE_AGE = 800
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'staticfiles'),
 )
 CRISPT_TEMPLATE_PACK = 'bootstrap4'
-LOGIN_REDIRECT_URL = "/home"
-LOGOUT_REDIRECT_URL = "/login"
+LOGIN_REDIRECT_URL = "users:home"
+LOGOUT_REDIRECT_URL = "login"
+LOGIN_URL = "login"
 AUTHENTICATION_BACKENDS = (
     'users.backend.UpdatedBackend', 'django.contrib.auth.backends.ModelBackend',)
 #
 # AUTHENTICATION_BACKENDS = (
 #     'django.contrib.auth.backends.ModelBackend',)
-STRIPE_PUBLISHABLE_KEY = ""
-STRIPE_SECRET_KEY = ""
+STRIPE_PUBLISHABLE_KEY = ""  # add your key
+STRIPE_SECRET_KEY = ""  # add your key
